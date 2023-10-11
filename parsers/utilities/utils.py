@@ -33,3 +33,17 @@ def save_json_to_file(json_data, filename: str, ext='json', mode='w'):
 
 	with open(filename + f'.{ext}', mode, encoding='utf-8') as f:
 		json.dump(json_data, f, ensure_ascii=False, indent=4)
+
+
+def get_json_from_file(filename: str, ext='json'):
+	"""
+	Возвращает JSON из файла
+	filename - имя файла, например, main_menu
+	ext - расширение файла, по умолчанию 'json'
+
+	"""
+
+	with open(filename + f'.{ext}', 'r', encoding='utf-8') as f:
+		d = json.load(f)
+
+	return d
