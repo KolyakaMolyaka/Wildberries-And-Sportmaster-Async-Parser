@@ -1,0 +1,2 @@
+class NoShardTagInCategoryExc(Exception):
+	pass
