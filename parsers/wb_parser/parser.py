@@ -12,7 +12,6 @@ from parsers.utilities.timer import Timer
 async def main(menu: WbMenu, category_name: str, subcategory_name: str, pages=10):
 	cat = menu.get_category(category_name)
 	sc = cat.get_subcategory(subcategory_name)
-	# sc = cat.get_subcategory('Брюки')
 	async with aiohttp.ClientSession() as session:
 		feedbacks = await CategoryParser.parse(sc, session, pages=pages)
 		return feedbacks
