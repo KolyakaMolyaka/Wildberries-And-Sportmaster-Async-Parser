@@ -8,7 +8,8 @@ class PagesParser:
 	class PageParser:
 		@staticmethod
 		async def parse_category_page(session, shard, cat_id, page):
-			cat_catalog_url = fr'https://catalog.wb.ru/catalog/{shard}/catalog?TestGroup=no_filters_count&TestID=304&appType=1&cat={cat_id}&curr=rub&dest=-1257786&regions=80,38,83,4,64,33,68,70,30,40,86,75,69,1,66,110,22,48,31,71,114&sort=popular&spp=27&page={page}'
+			print(f'Парсинг страницы #{page}...')
+			cat_catalog_url = fr'https://catalog.wb.ru/catalog/{shard}/catalog?TestGroup=no_filters_count&TestID=304&appType=1&cat={cat_id}&curr=rub&dest=-1257786&sort=popular&spp=27&page={page}'
 			try:
 				async with session.get(cat_catalog_url, headers=generate_fake_headers()) as r:
 					if r.status == 200:

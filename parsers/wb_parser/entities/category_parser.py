@@ -11,6 +11,7 @@ class CategoryParser:
 		shard = category.shard
 		cat_id = category.id
 
+		print('Парсинг подкатегории...')
 		# Парсинг страниц с продуктами
 		parsed_pages = await PagesParser.parse_pages(session, shard, cat_id, pages)
 		products = (prod for page in parsed_pages for prod in page['data']['products'])
