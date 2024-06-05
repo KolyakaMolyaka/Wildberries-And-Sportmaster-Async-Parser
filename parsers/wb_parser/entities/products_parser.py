@@ -24,7 +24,7 @@ async def pick_up_product_card_json(session, prod_id: str):
 	urls = (
 		f'https://basket-{str(i).rjust(2, "0")}.wb.ru/vol{prod_id[:-5]}/part{prod_id[:-3]}/{prod_id}/info/ru/card.json'
 		for
-		i in range(1, 16))
+		i in range(1, 36))
 	for url in urls:
 		try:
 			async with session.get(url, headers=generate_fake_headers()) as resp:
@@ -47,6 +47,8 @@ class ProductsParser:
 
 			print(f'\t\t | Starting resolving feedbacks for {product["name"]}')
 			prod_json = await pick_up_product_card_json(session, prod_id)
+			if not prod_json:
+				return None
 			feedback_id = prod_json['imt_id']
 			feedback_json = await pick_up_feedback_json(session, feedback_id)
 			no_feeds_url = f'https://www.wildberries.ru/catalog/{prod_id}/detail.aspx'
